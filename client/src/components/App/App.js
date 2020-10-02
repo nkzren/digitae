@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import logo from '../../logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import { Box, Image } from 'rebass'
+import keyboard from '../../img/keyboard.svg'
 
 function App() {
   const [ response, setResponse ] = useState('')
@@ -13,20 +13,21 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          {response}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Box
+        p={8}
+        fontSize={4}
+        width={[ 1/4, 1/2, 1 ]}
+        color='black'
+        bg='primary'>
+          <Image
+            src={keyboard}
+            sx={{
+              alignSelf: 'middle',
+              width: [ '100%', '50%' ],
+              borderRadius: 0,
+            }}
+          />
+      </Box>
     </div>
   );
 }

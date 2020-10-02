@@ -7,7 +7,10 @@
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "dependencies": {
-    "express": "^4.16.2"
+    "@rebass/preset": "^4.0.5",
+    "emotion-theming": "^10.0.27",
+    "express": "^4.16.2",
+    "rebass": "^4.0.7"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
