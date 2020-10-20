@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && npm start",
-    "server": "nodemon server/app.js",
+    "server": "node server/app.js",
     "dev": "concurrently --kill-others-on-fail \"nodemon server/app.js\" \"yarn client\""
   },
   "dependencies": {
     "@rebass/preset": "^4.0.5",
     "emotion-theming": "^10.0.27",
     "express": "^4.16.2",
-    "rebass": "^4.0.7"
+    "rebass": "^4.0.7",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, Image } from 'rebass'
+import { Card, Heading } from 'rebass'
 import keyboard from '../../img/keyboard.svg'
 
 function App() {
@@ -13,21 +13,10 @@ function App() {
 
   return (
     <div className="App">
-      <Box
-        p={8}
-        fontSize={4}
-        width={[ 1/4, 1/2, 1 ]}
-        color='black'
-        bg='primary'>
-          <Image
-            src={keyboard}
-            sx={{
-              alignSelf: 'middle',
-              width: [ '100%', '50%' ],
-              borderRadius: 0,
-            }}
-          />
-      </Box>
+      <Card width={512}>
+        <Heading>Text</Heading>
+        {response}
+      </Card>
     </div>
   );
 }
