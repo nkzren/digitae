@@ -1,6 +1,4 @@
 const express = require('express')
-const createError = require('http-errors')
-const path = require('path')
 
 const app = express()
 const port = process.env.API_PORT || 5000
