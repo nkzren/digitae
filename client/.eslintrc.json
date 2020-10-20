@@ -17,7 +17,7 @@
     "plugins": [
         "react"
     ],
-    "ignorePatterns": ["src/serviceWorker.js", "**/*.test.js"],
+    "ignorePatterns": ["src/serviceWorker.js", "**/*.test.js", "build/*"],
     "settings": {
         "react": {
             "version": "detect"
