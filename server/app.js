@@ -1,9 +1,7 @@
 const webSocket = require('./websocket')
 const express = require('express')
 const http = require('http')
-
-// Configure environment
-require('dotenv').config()
+const cors = require('cors')
 
 // Routers
 const indexRouter = require('./routes/index')
@@ -15,6 +13,7 @@ const app = express()
 const server = new http.Server(app);
 webSocket(server)
 
+app.use(cors({ origin: ['http://localhost:3000']}))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
@@ -22,7 +21,7 @@ app.use('/api', indexRouter)
 app.use('/testApi', testApiRouter)
 
 // error handler
-app.use((err, req, res, next) => { 
+app.use((err, req, res, _) => { 
   res.locals.message = err.message
   res.locals.error = req.app.get('env') === 'development' ? err : {}
 
@@ -36,5 +35,5 @@ app.listen(apiPort, () => console.log(`Listening on port ${apiPort}`))
 
 const webSocketPort = process.env.WEBSOCKET_PORT
 server.listen(webSocketPort, () => {
-  console.log(`Socker listening on port ${webSocketPort}!`);
+  console.log(`Websocket listening on port ${webSocketPort}!`);
 });
