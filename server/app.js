@@ -2,12 +2,14 @@ const webSocket = require('./websocket')
 const express = require('express')
 const http = require('http')
 
+// Configure environment
+require('dotenv').config()
+
 // Routers
 const indexRouter = require('./routes/index')
 const testApiRouter = require('./routes/testApi')
 
 const app = express()
-const port = process.env.API_PORT || 5000
 
 // Starting websocket connection
 const server = new http.Server(app);
@@ -29,8 +31,10 @@ app.use((err, req, res, next) => {
   res.render('error')
 })
 
-app.listen(port, () => console.log(`Listening on port ${port}`))
+const apiPort = process.env.API_PORT
+app.listen(apiPort, () => console.log(`Listening on port ${apiPort}`))
 
-server.listen(Number(5000) + 1, () => {
-  console.log(`Socker listening on port ${Number(5000) + 1}!`);
+const webSocketPort = process.env.WEBSOCKET_PORT
+server.listen(webSocketPort, () => {
+  console.log(`Socker listening on port ${webSocketPort}!`);
 });

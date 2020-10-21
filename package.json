@@ -8,6 +8,8 @@
   },
   "dependencies": {
     "@rebass/preset": "^4.0.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "emotion-theming": "^10.0.27",
     "express": "^4.16.2",
     "rebass": "^4.0.7",
