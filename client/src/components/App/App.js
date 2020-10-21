@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Card width={512}>
-          <Heading>Text</Heading>
+          <center><Heading>Digitae - TypeRacer</Heading></center>
           <RenderRoutes routes={ROUTES}></RenderRoutes>
         </Card>
       </BrowserRouter>
