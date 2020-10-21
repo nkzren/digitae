@@ -3,6 +3,8 @@ const express = require('express')
 const http = require('http')
 const cors = require('cors')
 
+const { API_PORT, WEBSOCKET_PORT } = require('./env')
+
 // Routers
 const indexRouter = require('./routes/index')
 const testApiRouter = require('./routes/testApi')
@@ -30,10 +32,8 @@ app.use((err, req, res, _) => {
   res.render('error')
 })
 
-const apiPort = process.env.API_PORT
-app.listen(apiPort, () => console.log(`Listening on port ${apiPort}`))
+app.listen(API_PORT, () => console.log(`Listening on port ${apiPort}`))
 
-const webSocketPort = process.env.WEBSOCKET_PORT
-server.listen(webSocketPort, () => {
-  console.log(`Websocket listening on port ${webSocketPort}!`);
+server.listen(WEBSOCKET_PORT, () => {
+  console.log(`Websocket listening on port ${WEBSOCKET_PORT}!`);
 });
