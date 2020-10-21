@@ -32,7 +32,7 @@ app.use((err, req, res, _) => {
   res.render('error')
 })
 
-app.listen(API_PORT, () => console.log(`Listening on port ${apiPort}`))
+app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`))
 
 server.listen(WEBSOCKET_PORT, () => {
   console.log(`Websocket listening on port ${WEBSOCKET_PORT}!`);
