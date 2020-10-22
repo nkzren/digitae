@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CardConnect from './components/CardConnect/CardConnect';
+import WaitRoom from './components/WaitRoom/WaitRoom';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
 const ROUTES = [
@@ -16,6 +17,12 @@ const ROUTES = [
         key: 'APP_ROOT',
         exact: true,
         component: CardConnect
+      },
+      {
+        path: '/waitRoom',
+        key: 'APP_ROOT',
+        exact: true,
+        component: WaitRoom
       }
     ]
   }
@@ -45,7 +52,7 @@ export const RenderRoutes = ({ routes }) => {
       {routes.map((route, i) => {
         return <RouteWithSubRoutes key={route.key} {...route} />;
       })}
-      <Route component={() => <h1>Not Found!</h1>} />
+      <Route component={() => <h1>Queiroz não está aqui.</h1>} />
     </Switch>
   );
 };

@@ -14,9 +14,15 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <div className="App" style= {{
+      position: 'absolute', left: '50%', top: '50%',
+      transform: 'translate(-50%, -50%)'
+    }}>
       <BrowserRouter>
-        <Card width={512}>
+        <Card width={350} sx={{
+        p: 1,
+        borderRadius: 10,
+      }}>
           <center><Heading>Digitae - TypeRacer</Heading></center>
           <RenderRoutes routes={ROUTES}></RenderRoutes>
         </Card>

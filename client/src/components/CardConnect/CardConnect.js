@@ -4,47 +4,43 @@ import { Input } from "@rebass/forms";
 import axios from "axios"
 
 function CardConnect() {
-  const [roomName, setRoomName] = useState("");
   const [playerName, setPlayerName] = useState("");
   const [test, setTest] = useState("")
 
   async function handleConnect() {
-    console.log(roomName, playerName)
+    console.log(playerName)
     // axios.get('/testApi')
-    axios.post('/testApi', {
-      playerName: playerName,
-      roomName: roomName
-    })
-    .then(res => console.log(res.data))
+    if (playerName != "") {
+      axios.post('/auth/login', {
+        'username': playerName,
+      })
+      .then(res => console.log(res.data))
+      window.location.replace('/waitRoom')
+    }
+    else {
+      console.log("bota nome ae vacilaum")
+      window.alert('No name, no game')
+    }
   }
-
   return (
-    <Flex width={1}>
-       <Box width={2 / 3} px={2}>
-        <Input
-          my={1}
-          py={1}
-          id="playerName"
-          placeholder="Player Name"
-          onChange={(e) => setPlayerName(e.target.value)}
-        ></Input>
-      </Box>
-      <Box width={2 / 3} px={2}>
-        <Input
-          my={1}
-          py={1}
-          id="roomName"
-          placeholder="Room Name"
-          onChange={(e) => setRoomName(e.target.value)}
-        ></Input>
-      </Box>
-      <Box width={1 / 3} px={20}>
-        <Button variant="outline" mr={2} onClick={handleConnect}>
-          Connect
-        </Button>
-        {test}
-      </Box>
-    </Flex>
+    <>
+        <center><Box width={4/5} px={2}>
+          <Input
+            my={10}
+            py={1}
+            id="playerName"
+            placeholder="Player Name"
+            onChange={(e) => setPlayerName(e.target.value)}
+          />
+        </Box></center>
+        <center><Box width={1/2} px={2}>
+          <Button variant="primary" mr={2} onClick={handleConnect}>
+            Connect
+          </Button>
+          {test}
+        </Box>
+      </center>
+    </>
   );
 }
 
