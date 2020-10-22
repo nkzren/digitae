@@ -1,11 +1,10 @@
 const router = require('express').Router()
+const { authController } = require('../auth')
 
 router.get('/', (req, res, next) => {
   res.send('index')
 })
 
-router.post('/createRoom', (req, res, next) => {
-    req.body.roomName
-})
+router.post('/auth/login', authController.login)
 
 module.exports = router

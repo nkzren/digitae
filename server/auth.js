@@ -21,7 +21,24 @@ const verifyToken = (token) => {
   }
 }
 
+const authController = {
+  login: async (req, res, next) => {
+    const { username } = req.body;
+
+    if (!username) {
+      res.sendStatus(400)
+    } else {
+      res.send(`Hello, ${username}`)
+    }
+  },
+
+  register: async (req, res, next) => {
+
+  }
+}
+
 module.exports = {
   authenticateToken,
-  verifyToken
+  verifyToken,
+  authController
 }

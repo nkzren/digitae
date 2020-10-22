@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && npm start",
-    "server": "node server/app.js",
+    "server": "nodemon server/app.js",
     "dev": "concurrently --kill-others-on-fail \"nodemon server/app.js\" \"yarn client\""
   },
   "dependencies": {
