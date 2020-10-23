@@ -8,7 +8,7 @@ function waitRoom() {
 //   const [test, setTest] = useState("")
 
   function playersList() {
-    var player = axios.get('/auth/login')
+    var player = axios.get('api/players')
     return player
   }
   return (
