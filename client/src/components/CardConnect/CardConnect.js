@@ -3,6 +3,7 @@ import { Button, Box, Flex, Link } from "rebass";
 import { Input } from "@rebass/forms";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { client as WebSocketClient } from 'websocket'
 
 function CardConnect(props) {
   const [playerName, setPlayerName] = useState("");
@@ -15,29 +16,12 @@ function CardConnect(props) {
       // axios.post('/api/auth/login', {
       //   'username': playerName,
       // })
-      handleWebSocketConnection();
+      window.player = playerName
+      history.push("/waitRoom");
     } else {
       console.log("bota nome ae vacilaum");
       window.alert("No name, no game");
     }
-  }
-
-  function handleWebSocketConnection(response) {
-    window.WebSocket = window.WebSocket || window.MozWebSocket;
-    const connection = new WebSocket("ws://localhost:5001");
-    connection.onopen = () => {
-      console.log(`${playerName} connected to WebSocket!`);
-      props.match.params.player = playerName;
-      history.push("/waitRoom");
-    };
-
-    connection.onerror = (error) => {
-      console.log("error");
-    };
-
-    connection.onmessage = (message) => {
-      console.log(message);
-    };
   }
 
   return (

@@ -13,6 +13,7 @@
     "emotion-theming": "^10.0.27",
     "express": "^4.16.2",
     "jsonwebtoken": "^8.5.1",
+    "react-redux": "^7.2.1",
     "rebass": "^4.0.7",
     "socket.io": "^2.3.0",
     "websocket": "^1.0.32"
