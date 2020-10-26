@@ -1,30 +1,22 @@
-const socketio = require("socket.io");
+const WebSocketServer = require("websocket").server;
 const { verifyToken } = require("./auth");
+const { WEBSOCKET_PORT } = require("./env");
+const http = require("http");
 
-module.exports = (app) => {
-  const io = socketio.listen(app, {
-    path: "/classic-mode",
+const httpServer = http.createServer((request, response) => {});
+
+httpServer.listen(WEBSOCKET_PORT, () => {
+  console.log(`Server connected on port: ${WEBSOCKET_PORT}`);
+});
+
+wsServer = new WebSocketServer({ httpServer: httpServer });
+
+ws;
+
+wsServer.on("request", (request) => {
+  const connection = request.accept(null, request.origin);
+
+  connection.on("message", (message) => {
+    console.log(message);
   });
-
-  console.log("Started listening!");
-  const classicMode = io.of("/classic-mode");
-  classicMode.use(verifyConnection).on("connection", async (socket) => {
-    const { user, roomId, action, options } = socket.handshake.query
-
-  });
-
-  io.on("connection", (socket) => {
-    console.log("Client Connected");
-  });
-
-  return io;
-};
-
-const verifyConnection = (socket, next) => {
-  const handshake = socket.handshake;
-  if (handshake.query && handshake.query.token) {
-    const decoded = verifyToken(handshake.query.token);
-    socket.decoded = decoded;
-    next();
-  }
-};
+});

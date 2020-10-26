@@ -1,16 +1,16 @@
-const jwt = require('jsonwebtoken')
-const { API_KEY } = require('./env')
+const jwt = require("jsonwebtoken");
+const { API_KEY } = require("./env");
 
 const authenticateToken = (req, res, next) => {
-  const token = req.headers.authorization
+  const token = req.headers.authorization;
   jwt.verify(token, API_KEY, (error, _) => {
     if (error) {
-      res.json('Wrong token provided')
+      res.json("Wrong token provided");
     } else {
       next();
     }
-  })
-}
+  });
+};
 
 const verifyToken = (token) => {
   try {
@@ -19,26 +19,24 @@ const verifyToken = (token) => {
   } catch (err) {
     return false;
   }
-}
+};
 
 const authController = {
   login: async (req, res, next) => {
     const { username } = req.body;
 
     if (!username) {
-      res.sendStatus(400)
+      res.sendStatus(400);
     } else {
-      res.send(`Hello, ${username}`)
+      res.send(`Hello, ${username}`);
     }
   },
 
-  register: async (req, res, next) => {
-
-  }
-}
+  register: async (req, res, next) => {},
+};
 
 module.exports = {
   authenticateToken,
   verifyToken,
-  authController
-}
+  authController,
+};

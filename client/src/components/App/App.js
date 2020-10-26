@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Card, Heading } from "rebass";
-import CardConnect from "../CardConnect/CardConnect";
 import { BrowserRouter } from "react-router-dom";
 import ROUTES, { RenderRoutes } from "../../routes";
 
-function App() {
+function App(props) {
   const [response, setResponse] = useState("");
 
   useEffect(() => {
@@ -23,7 +22,9 @@ function App() {
         p: 1,
         borderRadius: 10,
       }}>
-          <center><Heading>Digitae - TypeRacer</Heading></center>
+          <center>
+            <Heading>Digitae - TypeRacer</Heading>
+          </center>
           <RenderRoutes routes={ROUTES}></RenderRoutes>
         </Card>
       </BrowserRouter>

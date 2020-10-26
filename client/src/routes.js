@@ -1,31 +1,31 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import CardConnect from './components/CardConnect/CardConnect';
-import WaitRoom from './components/WaitRoom/WaitRoom';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import CardConnect from "./components/CardConnect/CardConnect";
+import WaitRoom from "./components/WaitRoom/WaitRoom";
+import { Route, Switch } from "react-router-dom";
 
 const ROUTES = [
   {
-    path: '/',
-    key: 'APP',
-    component: props => {
+    path: "/",
+    key: "APP",
+    component: (props) => {
       return <RenderRoutes {...props} />;
     },
     routes: [
       {
-        path: '/',
-        key: 'APP_ROOT',
+        path: "/",
+        key: "APP_ROOT",
         exact: true,
-        component: CardConnect
+        component: CardConnect,
       },
       {
-        path: '/waitRoom',
-        key: 'APP_ROOT',
+        path: "/waitRoom",
+        key: "APP_WAIT_ROOM",
         exact: true,
-        component: WaitRoom
-      }
-    ]
-  }
+        component: WaitRoom,
+      },
+    ],
+  },
 ];
 
 export default ROUTES;
@@ -33,12 +33,12 @@ export default ROUTES;
 /**
  * Render a route with potential sub routes
  */
-const RouteWithSubRoutes = route => {
+const RouteWithSubRoutes = (route) => {
   return (
     <Route
       path={route.path}
       exact={route.exact}
-      render={props => <route.component {...props} routes={route.routes} />}
+      render={(props) => <route.component {...props} routes={route.routes} />}
     />
   );
 };
@@ -58,5 +58,5 @@ export const RenderRoutes = ({ routes }) => {
 };
 
 RenderRoutes.propTypes = {
-  routes: PropTypes.array.isRequired
+  routes: PropTypes.array.isRequired,
 };
