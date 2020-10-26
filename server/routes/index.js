@@ -15,6 +15,10 @@ router.get('/quote', (_request, res, _next) => {
   }
 })
 
+router.get('/players', (_request, response, _next) => {
+  response.json({test1: 'lalala', test2: 'lalala'})
+})
+
 router.post('/auth/login', authController.login)
 
 module.exports = router

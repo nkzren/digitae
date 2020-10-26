@@ -5,8 +5,9 @@ import axios from "axios";
 
 function WaitRoom(props) {
   //   const [playerList, setPlayerName] = useState("");
-  const connection = new window.WebSocket("ws://localhost:5001", 'echo-protocol')
-  useEffect(() => {
+  let connection = null;
+  if (window.player) {
+    connection = new window.WebSocket("ws://localhost:5001", 'echo-protocol')
     connection.onopen = () => {
       console.log(`${window.player} connected to WebSocket!`);
     };
@@ -16,17 +17,18 @@ function WaitRoom(props) {
     };
 
     connection.onmessage = (message) => {
-      console.log(message);
+      console.log(JSON.stringify(message.data));
     };
-  },[]);
-
-  function playersList() {
-    var player = axios.get("api/players");
-    return player;
   }
 
+  useEffect(() => {
+    axios.get("api/players")
+  })
+
   function handleChange(value) {
-    connection.send(JSON.stringify({ player: window.player, text: value}))
+    if (connection) {
+      connection.send(JSON.stringify({ player: window.player, text: value}))
+    }
   }
 
   return (

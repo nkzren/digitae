@@ -12,7 +12,7 @@ function CardConnect(props) {
   function handleConnect() {
     console.log(playerName);
     // axios.get('/testApi')
-    if (playerName != "") {
+    if (playerName !== "") {
       // axios.post('/api/auth/login', {
       //   'username': playerName,
       // })

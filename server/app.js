@@ -1,4 +1,4 @@
-const webSocket = require("./websocket");
+const webSocketServer = require("./websocket");
 const express = require("express");
 const http = require("http");
 const cors = require("cors");
@@ -12,8 +12,8 @@ const testApiRouter = require("./routes/testApi");
 const app = express();
 
 // Starting websocket connection
-// const server = new http.Server(app);
-// webSocket(server)
+const server = new http.Server(app);
+webSocketServer(server);
 
 app.use(cors({ origin: ["http://localhost:3000"] }));
 app.use(express.json());
@@ -34,6 +34,6 @@ app.use((err, req, res, _) => {
 
 app.listen(API_PORT, () => console.log(`Listening on port ${API_PORT}`));
 
-// server.listen(WEBSOCKET_PORT, () => {
-//   console.log(`Websocket listening on port ${WEBSOCKET_PORT}!`);
-// });
+server.listen(WEBSOCKET_PORT, () => {
+  console.log(`Websocket listening on port ${WEBSOCKET_PORT}!`);
+});
