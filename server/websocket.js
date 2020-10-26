@@ -17,6 +17,7 @@ module.exports = (app) => {
   });
 
   wsServer.on("connect", (connection) => {
+    console.log(WsServer.connections.length)
     wsServer.broadcast("FOI")
   })
 };

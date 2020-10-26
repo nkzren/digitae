@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const { authController } = require('../auth')
 const { getRandomQuote } = require('../quotes')
+const { getPlayersList, addPlayer,  removePlayer} = require ('../players')
 
 router.get('/', (_req, res, next) => {
   res.send('index')
@@ -15,8 +16,19 @@ router.get('/quote', (_request, res, _next) => {
   }
 })
 
-router.get('/players', (_request, response, _next) => {
-  response.json({test1: 'lalala', test2: 'lalala'})
+router.get('/playersList', (_request, res, _next) => {
+  const players = getPlayersList()
+  res.json(players)
+})
+
+router.post('/playersAdd', (_request, res, _next) => {
+  const players = addPlayer()
+  res.json(players)
+})
+
+router.post('/playersRem', (_request, res, _next) => {
+  const players = removePlayer()
+  res.json(players)
 })
 
 router.post('/auth/login', authController.login)
