@@ -1,39 +1,63 @@
 import React, { useState, useEffect } from "react";
-import { Button, Box, Flex, Link } from "rebass";
-import { Input } from "@rebass/forms";
+import { Button, Box, Flex, Text } from "rebass";
+import PlayerList from "./PlayerList";
 import axios from "axios";
+import ChatRoom from "./ChatRoom";
+import { useHistory } from "react-router-dom";
 
 function WaitRoom(props) {
-  //   const [playerList, setPlayerName] = useState("");
-  let connection = null;
-  if (window.player) {
-    connection = new window.WebSocket("ws://localhost:5001", 'echo-protocol')
-    connection.onopen = () => {
-      console.log(`${window.player} connected to WebSocket!`);
-    };
+  const [playerList, setPlayerList] = useState([]);
+  const [player, setPlayer] = useState(props.location.state.player);
+  const history = useHistory();
 
-    connection.onerror = (error) => {
-      console.log("error");
-    };
+  const [connection, setConnection] = useState(null);
 
-    connection.onmessage = (message) => {
-      console.log(JSON.stringify(message.data));
-    };
-  }
-
-  useEffect(() => {
-    axios.get("api/players")
-  })
-
-  function handleChange(value) {
-    if (connection) {
-      connection.send(JSON.stringify({ player: window.player, text: value}))
+  function handleWebSocket() {
+    if (!connection) {
+      setConnection(new window.WebSocket("ws://localhost:5001", "echo-protocol"));
+    } else {
+      connection.onopen = (event) => {
+        console.log(`${player.name} connected to WebSocket`);
+      };
     }
   }
 
+  function handleStart() {
+    connection.send(JSON.stringify({ type: "gameStart" }));
+  }
+
+  const fetchPlayerList = () => {
+    axios
+      .get("/api/players")
+      .then((response) => {
+        if (response.data) {
+          console.log(response.data);
+          setPlayerList(JSON.parse(response.data));
+        } else {
+          console.log("player list empty. This is probably an error");
+        }
+      })
+      .catch((reason) => {
+        console.log(`Error fetching player list. Reason: ${reason}`);
+      });
+  };
+
+  useEffect(handleWebSocket);
+  useEffect(fetchPlayerList, [playerList.length]);
+
   return (
     <>
-      <Input onChange={e => { handleChange(e.target.value)}}></Input>
+      <Flex>
+        <Box width="100%">
+          <ChatRoom player={player} fetchPlayerList={fetchPlayerList} connection={connection}></ChatRoom>
+        </Box>
+        <Flex minWidth="20%" flexDirection="column" justifyContent="space-between">
+          <PlayerList playerList={playerList} justifyContent="flex-start"></PlayerList>
+          <Button onClick={handleStart} m={2}>
+            Start
+          </Button>
+        </Flex>
+      </Flex>
     </>
   );
 }

@@ -3,7 +3,7 @@ import { Card, Heading } from "rebass";
 import { BrowserRouter } from "react-router-dom";
 import ROUTES, { RenderRoutes } from "../../routes";
 
-function App(props) {
+function App() {
   const [response, setResponse] = useState("");
 
   useEffect(() => {
@@ -13,15 +13,17 @@ function App(props) {
   });
 
   return (
-    <div className="App" style= {{
-      position: 'absolute', left: '50%', top: '50%',
-      transform: 'translate(-50%, -50%)'
-    }}>
+    <div
+      className="App"
+      style={{
+        position: "absolute",
+        left: "50%",
+        top: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
       <BrowserRouter>
-        <Card width={350} sx={{
-        p: 1,
-        borderRadius: 10,
-      }}>
+        <Card minWidth={800} sx={{ p: 1, borderRadius: 10 }}>
           <center>
             <Heading>Digitae - TypeRacer</Heading>
           </center>

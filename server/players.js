@@ -6,12 +6,9 @@ const getPlayersList = () => {
 
 const addPlayer = (name) => {
     const player = {
-        name: '',
+        name: name,
         id: Date.now(),
     };
-
-    player.name = name
-    player.id = Date.now()
 
     playersList.push(player)
     

@@ -22,8 +22,8 @@ router.get('/players', (_request, res, _next) => {
 })
 
 router.post('/players/add', (request, res, _next) => {
-  const players = addPlayer(request.body.name)
-  res.json(players)
+  const playerId = addPlayer(request.body.name)
+  res.json({id: playerId})
 })
 
 router.post('/players/rm', (request, res, _next) => {

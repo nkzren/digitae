@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import CardConnect from "./components/CardConnect/CardConnect";
 import WaitRoom from "./components/WaitRoom/WaitRoom";
 import { Route, Switch } from "react-router-dom";
+import GameRoom from "./components/GameRoom/GameRoom";
 
 const ROUTES = [
   {
@@ -23,6 +24,12 @@ const ROUTES = [
         key: "APP_WAIT_ROOM",
         exact: true,
         component: WaitRoom,
+      },
+      {
+        path: "/gameRoom",
+        key: "APP_GAME_ROOM",
+        exact: true,
+        component: GameRoom,
       },
     ],
   },
