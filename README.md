@@ -39,6 +39,3 @@ yarn client
 # sobe apenas o backend
 yarn server
 ```
-
-## Testando
-
