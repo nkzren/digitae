@@ -16,18 +16,20 @@ router.get('/quote', (_request, res, _next) => {
   }
 })
 
-router.get('/playersList', (_request, res, _next) => {
+router.get('/players', (_request, res, _next) => {
   const players = getPlayersList()
   res.json(players)
 })
 
-router.post('/playersAdd', (_request, res, _next) => {
-  const players = addPlayer()
+router.post('/players/add', (request, res, _next) => {
+  console.log(request.body.name)
+  const players = addPlayer(request.body.name)
   res.json(players)
 })
 
-router.post('/playersRem', (_request, res, _next) => {
-  const players = removePlayer()
+router.post('/players/rm', (request, res, _next) => {
+  console.log(request.body.id)
+  const players = removePlayer(request.body.id)
   res.json(players)
 })
 

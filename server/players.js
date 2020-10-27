@@ -1,31 +1,38 @@
-const playersList = ['eu', 'voce', 'zooboomafoo']
-
-const player = {
-      name: '',
-      id: Date.now(),
-  };
+const playersList = []
 
 const getPlayersList = () => {
-    const playersLista = ['eu', 'voce', 'zooboomafoo']
-
-    return playersLista
+    return JSON.stringify(playersList)
 };
 
 const addPlayer = (name) => {
-    new player
+    const player = {
+        name: '',
+        id: Date.now(),
+    };
+
     player.name = name
     player.id = Date.now()
 
     playersList.push(player)
-    console.log("%s added", name)
+    
+    console.log(`name: ${player.name}, id: ${player.id}`)
     return player.id
 };
 
 const removePlayer = (id) => {
-    var playerTemp = playersList.find(remPlayer => remPlayer.id === id);
-    playersList.splice(playerTemp)
+    const playerTemp = playersList.findIndex(remPlayer => remPlayer.id == id);
+    console.log(playerTemp)
+    if(playerTemp == -1){
+        console.log(`id: ${id} not found`)
+        return false
+    }
+    playersList.splice(playerTemp,1)
+    console.log(`id: ${id} removed`)
+    return true
 };
 
-const getNumberPlayersList = () => {
-    return playersList.length
+module.exports = {
+    getPlayersList,
+    addPlayer,
+    removePlayer,
 };
