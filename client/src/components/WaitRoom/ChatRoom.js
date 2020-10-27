@@ -55,7 +55,7 @@ function ChatRoom({ player, connection, fetchPlayerList }) {
               fetchPlayerList();
               break;
             case "finished":
-              window.alert("ACABOOOOOOOOOOOOOOOO");
+              window.alert(`ACABOOOOOOOOOOOOOOOO! ${player.name} ganhou`);
               break;
             case "gameStart":
               console.log('TESTE')
@@ -74,7 +74,7 @@ function ChatRoom({ player, connection, fetchPlayerList }) {
     }
   }
 
-  useEffect(handleWebSocket, connection)
+  useEffect(handleWebSocket)
 
   return (
     <Flex maxHeight="300px" flexDirection="column" px={2}>

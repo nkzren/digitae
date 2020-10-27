@@ -4,8 +4,6 @@ const { getRandomQuote } = require("./quotes")
 module.exports = (app) => {
   wsServer = new WebSocketServer({ httpServer: app });
 
-  wsServer.handleRequestAccepted;
-
   wsServer.on("request", (request) => {
     const connection = request.accept("echo-protocol", request.origin);
 
