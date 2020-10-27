@@ -22,13 +22,11 @@ router.get('/players', (_request, res, _next) => {
 })
 
 router.post('/players/add', (request, res, _next) => {
-  console.log(request.body.name)
   const players = addPlayer(request.body.name)
   res.json(players)
 })
 
 router.post('/players/rm', (request, res, _next) => {
-  console.log(request.body.id)
   const players = removePlayer(request.body.id)
   res.json(players)
 })
